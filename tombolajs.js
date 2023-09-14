@@ -23,22 +23,22 @@ createTableData();
 const estrazione = function () {
   Form = document.getElementById("estrazione");
 
-  Form.addEventListener("submit", function () {
+  Form.addEventListener("submit", function (e) {
+    e.preventDefault();
     console.log("funziona l invio");
 
-    const getRandomNumber = function () {
-      const RandomNumber = Math.floor(Math.random() * 77);
-      return RandomNumber;
-    };
+    const RandomNumber = Math.floor(Math.random() * 77);
+    console.log(RandomNumber);
+    const allCells = document.querySelectorAll(".cella h4");
+    console.log(allCells);
 
-    getRandomNumber();
-    console.log(getRandomNumber());
-
-    const CellaText = document.getElementsByClassName("cella").innerText;
-    const Cella = document.getElementsByClassName("cella");
-    if (CellaText !== getRandomNumber()) {
-      Cella.classList.add("selectedcell");
+    for (let i = 0; i < allCells.length; i++) {
+      if (RandomNumber === parseInt(allCells[i].innerText)) {
+        allCells[i].parentElement.classList.add("selectedcell");
+      }
     }
   });
 };
+
 estrazione();
+s
